@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora de Numerología Caldea</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 720px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .intro {
+      background: #fff;
+      padding: 1rem;
+      border-left: 5px solid #0077cc;
+      margin-bottom: 1.5rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      color: #444;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+    }
+    input, button {
+      font-size: 1rem;
+      padding: 0.6rem;
+      margin-bottom: 1rem;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #0077cc;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    .result-box {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    }
+    .breakdown {
+      font-size: 0.95rem;
+      margin-top: 1rem;
+    }
+    .disclaimer {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Numerología Caldea - Calculadora</h1>
+
+  <div class="intro">
+  <h2>¿Qué es la numerología caldea?</h2>
+  <p>La numerología caldea es un sistema ancestral que asigna valores numéricos a las letras del alfabeto. Se cree que los números tienen una vibración especial que puede revelar aspectos ocultos de nombres y palabras. Aunque menos conocida que otros métodos, como el pitagórico, la numerología caldea es apreciada por su enfoque más intuitivo y místico.</p>
+  <p>A continuación puedes probar la calculadora ingresando tu nombre o cualquier palabra.</p>
+</div>
+
+  <label for="palabra">Introduce tu nombre o palabra:</label>
+  <input type="text" id="palabra" placeholder="Ejemplo: Pedro, Maria">
+
+  <button onclick="calcular()">Calcular Valor</button>
+
+  <div class="result-box">
+    <h2 id="resultado">Valor Total: —</h2>
+    <div class="breakdown" id="detalle"></div>
+  </div>
+
+  <div class="disclaimer">
+    ⚠️ Esta herramienta es solo para fines informativos y de entretenimiento. No pretende ofrecer consejos espirituales, religiosos ni predictivos. Las interpretaciones pueden variar y deben usarse con criterio personal.
+  </div>
+
+  <script>
+    // Chaldean values
+    const chaldeanMap = {
+      'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 8, 'g': 3,
+      'h': 5, 'i': 1, 'j': 1, 'k': 2, 'l': 3, 'm': 4, 'n': 5,
+      'o': 7, 'p': 8, 'q': 1, 'r': 2, 's': 3, 't': 4, 'u': 6,
+      'v': 6, 'w': 6, 'x': 5, 'y': 1, 'z': 7
+    };
+
+    function calcular() {
+      const input = document.getElementById('palabra').value.trim().toLowerCase();
+      let total = 0;
+      let detalle = '';
+
+      for (let letra of input) {
+        if (chaldeanMap[letra]) {
+          total += chaldeanMap[letra];
+          detalle += `${letra.toUpperCase()} = ${chaldeanMap[letra]}<br>`;
+        }
+      }
+
+      document.getElementById('resultado').textContent = `Valor Total: ${total}`;
+      document.getElementById('detalle').innerHTML = detalle || 'No se encontraron letras válidas.';
+    }
+  </script>
+</body>
+</html>
